@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Game Score Grading System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #111827;
+            color: white;
+            padding: 30px 15px;
+        }
+        main {
+            max-width: 520px;
+            margin: auto;
+            background: #1f2937;
+            padding: 25px;
+            border-radius: 14px;
+        }
+        h1 { color: #93c5fd; }
+        label { display: block; margin-top: 15px; }
+        input, button {
+            box-sizing: border-box;
+            width: 100%;
+            padding: 12px;
+            margin-top: 7px;
+            border-radius: 7px;
+        }
+        button {
+            background: #2563eb;
+            color: white;
+            border: none;
+            margin-top: 20px;
+            cursor: pointer;
+        }
+        .result {
+            background: #374151;
+            padding: 15px;
+            border-radius: 9px;
+            margin-top: 20px;
+        }
+        .error { color: #fca5a5; }
+    </style>
+</head>
+<body>
+<main>
+    <h1>🎮 Game Score Grading System</h1>
+    <p>Enter the player's details to calculate a grade.</p>
+
+    <form method="POST">
+        <label>Player Name</label>
+        <input name="player" required maxlength="80">
+
+        <label>Game Name</label>
+        <input name="game" required maxlength="100">
+
+        <label>Score (0–100)</label>
+        <input name="score" type="number"
+               min="0" max="100" step="any" required>
+
+        <button type="submit">Calculate Grade</button>
+    </form>
+
+    {% if error %}
+        <p class="error">{{ error }}</p>
+    {% endif %}
+
+    {% if result %}
+        <section class="result">
+            <h2>Game Result</h2>
+            <p>Player: {{ result.player }}</p>
+            <p>Game: {{ result.game }}</p>
+            <p>Score: {{ result.score }}</p>
+            <h3>Grade: {{ result.grade }}</h3>
+        </section>
+    {% endif %}
+</main>
+</body>
+</html>
